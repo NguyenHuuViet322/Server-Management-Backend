@@ -1,0 +1,8 @@
+const ROLE = {
+    STUDENT: "STUDENT",
+    TEACHER: "TEACHER",
+    ACADEMIC_AFFAIR: "ACADEMIC_AFFAIR",
+    ADMIN: "ADMIN"
+}
+
+export {ROLE};

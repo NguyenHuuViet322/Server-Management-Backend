@@ -1,7 +1,7 @@
 import { Router } from "express";
 
 import loginController from "../controllers/login.controller";
-import {authMiddleware} from "../middlewares/auth.middleware";
+import { authMiddleware } from "../middlewares/auth.middleware";
 
 const loginRoutes = Router();
 /**
@@ -45,7 +45,7 @@ loginRoutes.post("/login", loginController.login);
 
 /**
  * @swagger
- * /logout:
+ * /logout:F
  *   get:
  *     summary: User logout
  *     tags: [Auth]

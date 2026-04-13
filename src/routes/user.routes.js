@@ -1,6 +1,6 @@
 import { Router } from "express";
 import userController from "../controllers/user.controller";
-import {authMiddleware, roleMiddleware} from "../middlewares/auth.middleware";
+import { authMiddleware, roleMiddleware } from "../middlewares/auth.middleware";
 
 const userRoutes = Router();
 
@@ -39,23 +39,28 @@ userRoutes.post("/user", userController.add);
  *     401:
  *       description: Unauthorized
  */
-userRoutes.get("/user", authMiddleware, roleMiddleware(['ADMIN']), userController.get);
+userRoutes.get(
+  "/user",
+  authMiddleware,
+  roleMiddleware(["ADMIN"]),
+  userController.get,
+);
 
 /**
  * @swagger
  *  /user/{id}:
  *   get:
  *    summary: Get user by ID
- *   tags: [User]
- *   parameters:
- *    - in: path
- *      name: id
- *      required: true
- *   responses:
- *     200:
- *       description: User found
- *     404:
- *       description: User not found
+ *    tags: [User]
+ *    parameters:
+ *     - in: path
+ *       name: id
+ *       required: true
+ *    responses:
+ *      200:
+ *        description: User found
+ *      404:
+ *        description: User not found
 
  */
 userRoutes.get("/user/:id", userController.find);

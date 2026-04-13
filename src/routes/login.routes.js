@@ -45,7 +45,7 @@ loginRoutes.post("/login", loginController.login);
 
 /**
  * @swagger
- * /logout:F
+ * /logout:
  *   get:
  *     summary: User logout
  *     tags: [Auth]

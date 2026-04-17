@@ -18,9 +18,9 @@ let userController = {
         password: Yup.string().required().min(6),
         phone_number: Yup.string().length(10),
       });
-
+      console.log(req.body);
       if (!(await schema.isValid(req.body))) throw new ValidationError();
-
+      console.log("true");
       const { email } = req.body;
 
       const userExists = await User.findOne({
@@ -34,9 +34,7 @@ let userController = {
         role: ROLE.STUDENT,
       }
 
-      const user = await User.create(data);
-
-      return res.status(200).json(user);
+      return res.status(200).json({ msg: "User created successfully" });
     } catch (error) {
       next(error);
     }

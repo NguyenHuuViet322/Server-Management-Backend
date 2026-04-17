@@ -3,6 +3,15 @@ import {BadTokenError, UnauthorizedError} from "../utils/ApiError"
 
 const authMiddleware = async (req, res, next) => {
   try {
+
+    const publicAPIs = [
+      "/auth",
+    ];
+
+    if (publicAPIs.includes(req.path)) {
+      return next();
+    }
+
     if (process.env.SERVER_JWT === "false") return next();
 
     const token = JwtService.jwtGetToken(req);

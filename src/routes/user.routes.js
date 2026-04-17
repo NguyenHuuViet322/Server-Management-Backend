@@ -15,13 +15,55 @@ const userRoutes = Router();
  * @swagger
  * /user:
  *   post:
- *     summary: create a new user
+ *     summary: Create a new user
  *     tags: [User]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - name
+ *               - email
+ *               - password
+ *             properties:
+ *               name:
+ *                 type: string
+ *                 example: John Doe
+ *               email:
+ *                 type: string
+ *                 format: email
+ *                 example: string@string.com
+ *               password:
+ *                 type: string
+ *                 format: password
+ *                 example: "yourpassword123"
+ *           example:
+ *             name: John Doe
+ *             email: string@string.com
+ *             password: "yourpassword123"
  *     responses:
  *       200:
  *         description: User created successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: User created successfully
  *       401:
  *         description: Validation error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: Validation error
  */
 userRoutes.post("/user", userController.add);
 

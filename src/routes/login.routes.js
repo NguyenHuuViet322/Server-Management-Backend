@@ -51,6 +51,7 @@ loginRoutes.post("/login", loginController.login);
  *     tags: [Auth]
  *     security:
  *       - bearerAuth: []
+ *     description: Logs out the user by blacklisting the current JWT token.
  *     responses:
  *       200:
  *         description: Logout successful

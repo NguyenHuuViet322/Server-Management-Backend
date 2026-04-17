@@ -32,7 +32,7 @@ let loginController = {
 
       const token = JwtService.jwtSign(payload);
 
-      return res.status(200).json({ user, token });
+      return res.status(200).json({ token });
     } catch (error) {
       next(error);
     }

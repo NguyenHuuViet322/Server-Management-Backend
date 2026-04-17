@@ -3,7 +3,7 @@ import fs from "fs";
 import bodyParser from "body-parser";
 import globalErrorHandler from "../middlewares/errorHandler.middleware";
 import swaggerUi from "swagger-ui-express";
-import swaggerJsdoc from "swagger-jsdoc";
+import swaggerSpec from "../config/swagger";
 
 /*
   body-parser: Parse incoming request bodies in a middleware before your handlers, 
@@ -16,20 +16,6 @@ const routeFiles = fs
 
 let server;
 let routes = [];
-
-const swaggerOptions = {
-  definition: {
-    openapi: "3.0.0",
-    info: {
-      title: "API Documentation",
-      version: "1.0.0",
-      description: "API documentation for the service",
-    },
-  },
-  apis: ["./src/routes/*.js"],
-};
-
-const swaggerDocument = swaggerJsdoc(swaggerOptions);
 
 const expressService = {
   init: async () => {
@@ -45,10 +31,9 @@ const expressService = {
 
       server = express();
       server.use(bodyParser.json());
+      server.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
       server.use(routes);
       server.use(globalErrorHandler);
-
-      server.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
       server.listen(process.env.SERVER_PORT);
       console.log("[EXPRESS] Express initialized");
